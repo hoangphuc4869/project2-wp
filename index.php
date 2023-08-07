@@ -5,6 +5,7 @@
 
 */
 get_header();?>
+      
 
       <div class="heading d-flex justify-content-center align-items-center">
         <div class="img_text" data-aos="slide-right">
@@ -24,22 +25,22 @@ get_header();?>
 
       <div class="video_section_wrapper">
         <div class="video_section">
-          <div class="video_left">
-            <iframe data-aos="slide-right" width="100%" height="315" src="https://www.youtube.com/embed/2uveJzxpfFk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
+          <div class="video_left" data-aos='slide-right'>
+            <div class="video_intr">
+              <?php the_field('video_intro'); ?>
+            </div>
           </div>
           <div class="video_right">
             <div class="video_content">
-              <div class="v_title">嘉祿企業文化</div>
+              <div class="v_title"><?php echo get_field('video_title1')?></div>
               <div class="v_text">
-                【誠信】: 誠實、信用、守時、守德、說到做到。<br>
-                【和諧】: 合作、融洽、體諒、協助、將心比心。<br>
-                【效率】: 績效、品質、改革、進步、精益求精。
+                <?php echo get_field('video_text1')?>
               </div>
             </div>
             <div class="video_content">
-              <div class="v_title">營業項目</div>
+              <div class="v_title"><?php echo get_field('video_title2')?></div>
               <div class="v_text">
-                各式散熱器、熱交換器、冷凝機組、蒸發機組、除濕機、分離式冷氣、空調箱、冷暖風機、氣冷/水冷式冰水機、農業栽培環控設備 特殊冷凍空調配件訂製
+                <?php echo get_field('video_text2')?>
               </div>
             </div>
           </div>
@@ -51,17 +52,15 @@ get_header();?>
           <div class="row justify-content-center align-items-center">
             <div class="col-xl-6">
               <div class="info_content">
-                <div class="info_title">集團概況</div>
+                <div class="info_title"><?php echo get_field("info_title")?></div>
                   <ul class="info_text">
                     <li>
                       <p data-aos="slide-right">
-                        嘉祿工業股份有限公司 <br>
-                        台灣台北 /專業冷凍空調設備廠集團設計、技術中心
+                        <?php echo get_field("t1")?>
                       </p>
                     </li>
                     <li>
-                      <p data-aos="slide-right">越南嘉盛工業責任有限公司 <br>
-                        越南胡志明市 /專業冷凍空調設備廠</p>
+                      <p data-aos="slide-right"><?php echo get_field("t2")?></p>
                     </li>
                   </ul>
               </div>
@@ -103,50 +102,20 @@ get_header();?>
 
       <div class="slider_wrapper">
         <div class="slider">
-          <div class="slider_title">主要客戶</div>
+          <div class="slider_title"><?php echo get_field('slide')?></div>
           <div class="owl-carousel owl-theme">
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\a51f4bd7-b1d3-497c-9d03-876fe86dfd50.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片1 (1).png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片2.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片3-300x67.jpg" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片4.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片5.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片6.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片7.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片8.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片9.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片10.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片11.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片12.png" alt="">
-            </div>
-            <div class="item">
-              <img src="<?php bloginfo('template_directory') ?>\images\slider_images\圖片13.png" alt="">
-            </div>            
+            <?php if( have_rows('slide_partner') ): ?>
+            <?php while( have_rows('slide_partner') ): the_row(); 
+                $image = get_sub_field('img');
+                $picture = $image['sizes']['thumbnail']; 
+                ?>
+
+                <div class="item">
+                	<img src="<?php echo $picture;?>" alt="<?php echo $image['alt'];?>">
+                </div>
+
+            <?php endwhile; ?>
+    	<?php endif; ?>
           </div>
         </div>
       </div>

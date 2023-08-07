@@ -17,3 +17,14 @@ function m_register_menu()
 	);
 }
 add_action('init', 'm_register_menu');
+
+
+
+
+
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page();
+}
+
+?>
+
